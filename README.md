@@ -20,10 +20,10 @@ sunlit-valley-ru/
 │   ├── en_us.json
 │   └── ru_ru.json
 ├── mod/
-│   └── en_us.json
+│   ├── en_us.json
+│   └── ru_ru.json
 ├── skills/
 │   └── en_us.json
-└── ru_ru/            ← перевод mod (после PR из GL)
 ```
 
 Остальное — в **`_local/`**, не в Git.
@@ -35,7 +35,7 @@ sunlit-valley-ru/
 | Тип | Source | Translation |
 |-----|--------|-------------|
 | **File** | `quests/en_us.json` | `quests/%lang%.json` |
-| **File** | `mod/en_us.json` | `ru_ru/%lang%.json` |
+| **File** | `mod/en_us.json` | `mod/%lang%.json` |
 | **File** | `skills/en_us.json` | `skills/%lang%.json` |
 
 ## Установка в модпак
@@ -43,7 +43,7 @@ sunlit-valley-ru/
 | Файл в репо | Куда в инстансе |
 |-------------|-----------------|
 | `quests/ru_ru.json` | `minecraft/kubejs/assets/ftbquestlocalizer/lang/ru_ru.json` |
-| `ru_ru/ru_ru.json` | `minecraft/kubejs/assets/society/lang/ru_ru.json` |
+| `mod/ru_ru.json` | `minecraft/kubejs/assets/society/lang/ru_ru.json` |
 | `skills/ru_ru.json` | `minecraft/kubejs/assets/society_skills/lang/ru_ru.json` |
 
 Язык Minecraft: **Русский**, перезапуск или **F3+T**.
