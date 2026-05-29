@@ -2,7 +2,7 @@
 param(
     [Parameter(Mandatory = $true)]
     [string]$InstancePath,
-    [string]$TranslatedRoot = "E:\DEV\sunlit-ru\l10n\translated"
+    [string]$TranslatedRoot = "E:\DEV\sunlit-ru\l10n\ru_ru"
 )
 
 $ErrorActionPreference = "Stop"

@@ -1,7 +1,7 @@
 # Копирует EN-исходники из инстанса модпака в l10n/source
 param(
     [string]$ModpackRoot = "C:\Users\Duugrim\AppData\Roaming\PrismLauncher\instances\Society- Sunlit Valley\minecraft",
-    [string]$DestRoot = "E:\DEV\sunlit-ru\l10n\source"
+    [string]$DestRoot = "E:\DEV\sunlit-ru\l10n\en"
 )
 
 $ErrorActionPreference = "Stop"

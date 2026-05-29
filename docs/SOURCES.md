@@ -1,10 +1,10 @@
 # Источники файлов
 
-Все EN-файлы лежат в **`l10n/source/`** (зеркало путей в `minecraft/` инстанса).
+Все EN-файлы лежат в **`l10n/en/`** (зеркало путей в `minecraft/` инстанса).
 
 ## Включено
 
-| Путь в `l10n/source/` | Описание |
+| Путь в `l10n/en/` | Описание |
 |-------------------------|----------|
 | `kubejs/assets/society/lang/en_us.json` | Society: tooltips, сообщения |
 | `kubejs/assets/society/lang/en_us_template.json` | Шаблон блоков/предметов (каждый релиз) |
@@ -27,7 +27,7 @@
 .\scripts\sync-sources.ps1
 ```
 
-Копирует EN из инстанса PrismLauncher в `l10n/source/`.
+Копирует EN из инстанса PrismLauncher в `l10n/en/`.
 
 ## Черновик RU квестов
 

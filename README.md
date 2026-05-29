@@ -6,48 +6,34 @@ RU: Хотя я использую Курсор и ИИ для автомати�
 
 # Society: Sunlit Valley — русская локализация (RU)
 
-Неофициальный репозиторий для перевода [Society: Sunlit Valley](https://github.com/Chakyl/society-sunlit-valley) на русский через [GitLocalize](https://gitlocalize.com).
+Репозиторий: https://github.com/Duugrim/sunlit-valley-ru
 
-## Структура репозитория
+## Структура
 
 ```
 sunlit-ru/
 ├── l10n/
-│   ├── source/       ← EN: что переводим (GitLocalize Source path)
-│   └── translated/   ← RU: готовый перевод после PR (GitLocalize Target path)
-├── docs/             ← документация (не переводится)
-├── scripts/          ← утилиты (не переводится)
-└── imports/          ← локальные черновики (не в Git, см. .gitignore)
+│   ├── en/          ← EN исходники (для GitLocalize)
+│   └── ru_ru/       ← RU после merge PR
+├── docs/            ← не переводится
+├── scripts/
+└── imports/         ← черновики (не в Git)
 ```
 
 ## GitLocalize
 
-| Поле | Значение |
-|------|----------|
-| Repository | `Duugrim/sunlit-valley-ru` |
-| Branch | `master` |
-| **Source path** | **`l10n/source`** |
-| **Target path** | **`l10n/translated`** |
-| Source language | English |
-| Target language | Russian |
+**Не работает:** Source path = `l10n/source` или `/`.
 
-Подробнее: [docs/GITLOCALIZE.md](docs/GITLOCALIZE.md)
+**Работает:** отдельные правила File/Directory — см. **[docs/GITLOCALIZE.md](docs/GITLOCALIZE.md)** и **[docs/gitlocalize-rules.txt](docs/gitlocalize-rules.txt)**.
 
-## Установка для игроков
+Код русского языка: **`ru_ru`**.
 
-Скопируйте содержимое **`l10n/translated/`** в папку `minecraft` инстанса:
+## Установка в модпак
 
-```
-<инстанс>\minecraft\kubejs\assets\...
-<инстанс>\minecraft\patchouli_books\...
+```powershell
+.\scripts\install-to-modpack.ps1 -InstancePath "C:\...\instances\Society- Sunlit Valley"
 ```
 
-Язык Minecraft: **Русский**. Перезапуск или **F3+T**.
+Копирует `l10n/ru_ru/` → `<инстанс>\minecraft\`.
 
-Или: `scripts/install-to-modpack.ps1 -InstancePath "..."`
-
-## Документация
-
-- [l10n/README.md](l10n/README.md) — кратко про source / translated
-- [docs/GLOSSARY.md](docs/GLOSSARY.md) — терминология
-- [docs/SOURCES.md](docs/SOURCES.md) — что включено и откуда
+Язык Minecraft: **Русский**, перезапуск или **F3+T**.
