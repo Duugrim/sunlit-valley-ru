@@ -2,6 +2,10 @@
 *
 !.gitignore
 !README.md
+!GLOSSARY.md
+
+# Локально для Cursor, не в репозиторий
+AGENTS.md
 
 !quests/
 !quests/**
