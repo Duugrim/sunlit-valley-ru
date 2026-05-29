@@ -1,39 +1,56 @@
-# DISCLAIMER
+# Society: Sunlit Valley — RU
 
-EN: While I use Cursor and AI to automate routine tasks, I don't blindly trust AI translation. And I not only proofread, but also edit almost every line to make it sound better or make more sense.
-
-RU: Хотя я использую Курсор и ИИ для автоматизации рутинных задач, я не слепо доверяю ИИ в переводе. И я не только пруфрид, но и корректирую почти каждую строку чтобы она лучше звучала или была понятнее. 
-
-# Society: Sunlit Valley — русская локализация (RU)
-
-Репозиторий: https://github.com/Duugrim/sunlit-valley-ru
-
-## Структура
+Минимальный репозиторий для [GitLocalize](https://gitlocalize.com): только квесты и мод Society.
 
 ```
-sunlit-ru/
-├── l10n/
-│   ├── en/          ← EN исходники (для GitLocalize)
-│   └── ru_ru/       ← RU после merge PR
-├── docs/            ← не переводится
-├── scripts/
-└── imports/         ← черновики (не в Git)
+sunlit-valley-ru/
+├── README.md
+├── quests/
+│   ├── en_us.json    ← EN (источник)
+│   └── ru_ru.json    ← RU (готовый перевод квестов)
+├── mod/
+│   └── en_us.json    ← EN (источник, society)
+└── ru_ru/            ← появится после PR из GL (перевод mod)
 ```
+
+Остальные исходники (диалоги, patchouli, tips…) лежат локально в **`_local/`** — в Git не попадают.
 
 ## GitLocalize
 
-**Не работает:** Source path = `l10n/source` или `/`.
+Репозиторий: `Duugrim/sunlit-valley-ru`, ветка **`master`**.
 
-**Работает:** отдельные правила File/Directory — см. **[docs/GITLOCALIZE.md](docs/GITLOCALIZE.md)** и **[docs/gitlocalize-rules.txt](docs/gitlocalize-rules.txt)**.
+Удалите старые path rules. Добавьте **два правила**:
 
-Код русского языка: **`ru_ru`**.
+| Тип | Source | Translation |
+|-----|--------|-------------|
+| **File** | `quests/en_us.json` | `quests/%lang%.json` |
+| **File** | `mod/en_us.json` | `ru_ru/%lang%.json` |
+
+Язык Russian → код **`ru_ru`** (Manage Languages).
+
+Не используйте Source path `/` или `l10n/` — иначе GL снова подхватит лишнее.
+
+После sync:
+
+- **quests** — RU уже в репо, в GL можно ревьюить/править.
+- **mod** — перевод появится в `ru_ru/ru_ru.json` после PR.
 
 ## Установка в модпак
 
-```powershell
-.\scripts\install-to-modpack.ps1 -InstancePath "C:\...\instances\Society- Sunlit Valley"
-```
-
-Копирует `l10n/ru_ru/` → `<инстанс>\minecraft\`.
+| Файл в репо | Куда в инстансе |
+|-------------|-----------------|
+| `quests/ru_ru.json` | `minecraft/kubejs/assets/ftbquestlocalizer/lang/ru_ru.json` |
+| `ru_ru/ru_ru.json` | `minecraft/kubejs/assets/society/lang/ru_ru.json` |
 
 Язык Minecraft: **Русский**, перезапуск или **F3+T**.
+
+## Локальные исходники
+
+Папка `_local/` (не в Git): старые `l10n/`, `docs/`, `scripts/`, `imports/`, прочие EN-файлы для будущих этапов.
+
+Обновить EN квестов/мода из модпака:
+
+```powershell
+Copy-Item "<инстанс>\minecraft\kubejs\assets\ftbquestlocalizer\lang\en_us.json" "quests\en_us.json"
+Copy-Item "<инстанс>\minecraft\kubejs\assets\society\lang\en_us.json" "mod\en_us.json"
+```

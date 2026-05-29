@@ -1,9 +1,14 @@
-# Локальные импорты для GitLocalize — не коммитить в main
-imports/
+# Только то, что видит Git и GitLocalize
+*
+!.gitignore
+!README.md
 
-# OS / editor
-Thumbs.db
-.DS_Store
-*.swp
-.idea/
-.vscode/
+!quests/
+!quests/**
+
+!mod/
+!mod/**
+
+# GitLocalize пишет сюда перевод мода
+!ru_ru/
+!ru_ru/**
