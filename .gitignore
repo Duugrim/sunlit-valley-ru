@@ -1,0 +1,9 @@
+# Локальные импорты для GitLocalize — не коммитить в main
+imports/
+
+# OS / editor
+Thumbs.db
+.DS_Store
+*.swp
+.idea/
+.vscode/
