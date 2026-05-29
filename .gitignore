@@ -9,6 +9,9 @@
 !mod/
 !mod/**
 
+!skills/
+!skills/**
+
 # GitLocalize пишет сюда перевод мода
 !ru_ru/
 !ru_ru/**

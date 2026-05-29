@@ -1,39 +1,31 @@
 # Society: Sunlit Valley — RU
 
-Минимальный репозиторий для [GitLocalize](https://gitlocalize.com): только квесты и мод Society.
+Минимальный репозиторий для [GitLocalize](https://gitlocalize.com).
 
 ```
 sunlit-valley-ru/
 ├── README.md
 ├── quests/
-│   ├── en_us.json    ← EN (источник)
-│   └── ru_ru.json    ← RU (готовый перевод квестов)
+│   ├── en_us.json
+│   └── ru_ru.json
 ├── mod/
-│   └── en_us.json    ← EN (источник, society)
-└── ru_ru/            ← появится после PR из GL (перевод mod)
+│   └── en_us.json
+├── skills/
+│   └── en_us.json
+└── ru_ru/            ← перевод mod (после PR из GL)
 ```
 
-Остальные исходники (диалоги, patchouli, tips…) лежат локально в **`_local/`** — в Git не попадают.
+Остальное — в **`_local/`**, не в Git.
 
 ## GitLocalize
 
-Репозиторий: `Duugrim/sunlit-valley-ru`, ветка **`master`**.
-
-Удалите старые path rules. Добавьте **два правила**:
+Репозиторий: `Duugrim/sunlit-valley-ru`, ветка **`master`**, код русского: **`ru_ru`**.
 
 | Тип | Source | Translation |
 |-----|--------|-------------|
 | **File** | `quests/en_us.json` | `quests/%lang%.json` |
 | **File** | `mod/en_us.json` | `ru_ru/%lang%.json` |
-
-Язык Russian → код **`ru_ru`** (Manage Languages).
-
-Не используйте Source path `/` или `l10n/` — иначе GL снова подхватит лишнее.
-
-После sync:
-
-- **quests** — RU уже в репо, в GL можно ревьюить/править.
-- **mod** — перевод появится в `ru_ru/ru_ru.json` после PR.
+| **File** | `skills/en_us.json` | `skills/%lang%.json` |
 
 ## Установка в модпак
 
@@ -41,16 +33,15 @@ sunlit-valley-ru/
 |-------------|-----------------|
 | `quests/ru_ru.json` | `minecraft/kubejs/assets/ftbquestlocalizer/lang/ru_ru.json` |
 | `ru_ru/ru_ru.json` | `minecraft/kubejs/assets/society/lang/ru_ru.json` |
+| `skills/ru_ru.json` | `minecraft/kubejs/assets/society_skills/lang/ru_ru.json` |
 
 Язык Minecraft: **Русский**, перезапуск или **F3+T**.
 
-## Локальные исходники
-
-Папка `_local/` (не в Git): старые `l10n/`, `docs/`, `scripts/`, `imports/`, прочие EN-файлы для будущих этапов.
-
-Обновить EN квестов/мода из модпака:
+## Обновить EN из модпака
 
 ```powershell
-Copy-Item "<инстанс>\minecraft\kubejs\assets\ftbquestlocalizer\lang\en_us.json" "quests\en_us.json"
-Copy-Item "<инстанс>\minecraft\kubejs\assets\society\lang\en_us.json" "mod\en_us.json"
+$mc = "<инстанс>\minecraft\kubejs\assets"
+Copy-Item "$mc\ftbquestlocalizer\lang\en_us.json" "quests\en_us.json"
+Copy-Item "$mc\society\lang\en_us.json" "mod\en_us.json"
+Copy-Item "$mc\society_skills\lang\en_us.json" "skills\en_us.json"
 ```
