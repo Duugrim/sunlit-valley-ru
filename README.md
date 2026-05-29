@@ -1,3 +1,9 @@
+# DISCLAIMER
+
+EN: While I use Cursor and AI to automate routine tasks, I don't blindly trust AI translation. And I not only proofread, but also edit almost every line to make it sound better or make more sense.
+
+RU: Хотя я использую Курсор и ИИ для автоматизации рутинных задач, я не слепо доверяю ИИ в переводе. И я не только пруфрид, но и корректирую почти каждую строку чтобы она лучше звучала или была понятнее. 
+
 # Society: Sunlit Valley — русская локализация (RU)
 
 Неофициальный репозиторий для перевода [Society: Sunlit Valley](https://github.com/Chakyl/society-sunlit-valley) на русский через [GitLocalize](https://gitlocalize.com).
