@@ -1,7 +1,7 @@
-# Копирует EN-исходники из инстанса модпака в E:\DEV\sunlit-ru
+# Копирует EN-исходники из инстанса модпака в l10n/source
 param(
     [string]$ModpackRoot = "C:\Users\Duugrim\AppData\Roaming\PrismLauncher\instances\Society- Sunlit Valley\minecraft",
-    [string]$DestRoot = "E:\DEV\sunlit-ru"
+    [string]$DestRoot = "E:\DEV\sunlit-ru\l10n\source"
 )
 
 $ErrorActionPreference = "Stop"
@@ -21,15 +21,14 @@ foreach ($d in $langDirs) {
     Get-ChildItem (Join-Path $minecraft $d) -Filter "en_us*.json" | Copy-Item -Destination $dest -Force
 }
 
-$pbSrc = Join-Path $minecraft "patchouli_books"
-$pbDest = Join-Path $DestRoot "patchouli_books"
+$pbDestRoot = Join-Path $DestRoot "patchouli_books"
 foreach ($book in @("almanac", "fish_finder")) {
-    $enSrc = Join-Path $pbSrc "$book\en_us"
-    $enDest = Join-Path $pbDest "$book\en_us"
+    $enSrc = Join-Path $minecraft "patchouli_books\$book\en_us"
+    $enDest = Join-Path $pbDestRoot "$book\en_us"
     if (-not (Test-Path $enSrc)) { continue }
     if (Test-Path $enDest) { Remove-Item $enDest -Recurse -Force }
     New-Item -ItemType Directory -Force -Path (Split-Path $enDest) | Out-Null
     Copy-Item $enSrc $enDest -Recurse -Force
 }
 
-Write-Host "Sources synced to $DestRoot"
+Write-Host "Synced EN sources -> $DestRoot"

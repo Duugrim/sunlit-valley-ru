@@ -1,62 +1,54 @@
 # GitLocalize
 
-## 1. Подключение репозитория
+## Настройки проекта
 
-1. [gitlocalize.com](https://gitlocalize.com) → вход через GitHub.
-2. **Add repository** → выберите этот репо.
-3. Ветка: `main`.
-4. **Source language:** English  
-5. **Target language:** Russian (`ru` / `ru_ru` — как предложит интерфейс для JSON Minecraft).
-
-### Пути (рекомендация)
+1. [gitlocalize.com](https://gitlocalize.com) → GitHub → репозиторий **`Duugrim/sunlit-valley-ru`**
+2. Если проект уже был с путём `/` — **удалите и создайте заново** или измените paths в настройках.
 
 | Поле | Значение |
 |------|----------|
-| Source path | `/` (корень репозитория) |
-| Target path | `/` (зеркальная структура) |
+| Branch | `master` |
+| **Source path** | **`l10n/source`** |
+| **Target path** | **`l10n/translated`** |
+| Source language | English |
+| Target language | Russian |
 
-GitLocalize подхватывает `en_us.json` и JSON в `patchouli_books/*/en_us/`.  
-Для Patchouli целевой язык обычно даёт папку `ru_ru/` рядом с `en_us/`.
+Так GitLocalize **не** будет предлагать переводить `docs/`, `README.md` и `scripts/`.
 
-## 2. Только исходники в GitHub
+## Что куда попадает
 
-В `main` **нет** файлов `ru_ru.json` (кроме случая, когда модератор смержил PR из GL).
+| Источник | Файл EN | Файл RU (после PR) |
+|----------|---------|-------------------|
+| Society | `l10n/source/kubejs/assets/society/lang/en_us.json` | `l10n/translated/kubejs/assets/society/lang/ru_ru.json` |
+| Квесты | `.../ftbquestlocalizer/lang/en_us.json` | `.../ru_ru.json` |
+| Patchouli | `.../patchouli_books/almanac/en_us/...` | `.../patchouli_books/almanac/ru_ru/...` |
 
-Так новые строки после обновления сборки видны как «не переведено».
+## Импорт готового перевода квестов
 
-## 3. Импорт готового перевода квестов (не в Git)
-
-Файл локально (не коммитится):
+Локальный файл (не в GitHub):
 
 ```
 imports/ftbquestlocalizer/lang/ru_ru.json
 ```
 
-**После** первого sync проекта в GitLocalize:
+В GitLocalize откройте файл  
+`l10n/source/kubejs/assets/ftbquestlocalizer/lang/en_us.json` → язык Russian → импорт / вставка сегментов.
 
-1. Откройте компонент / файл `kubejs/assets/ftbquestlocalizer/lang/en_us.json` → язык **Russian**.
-2. Импортируйте или вставьте сегменты из `imports/.../ru_ru.json` (если в UI есть Import — используйте его; иначе — пакетная вставка по файлу в редакторе GL).
-3. **Не** отправляйте PR в GitHub, пока не закончите ревью.
-4. **Create Review Request** → вы как **Language Moderator** → правки → **Pull Request** → merge на GitHub.
+Дальше: **Review Request** → модератор → **Pull Request** в `l10n/translated/...` → merge.
 
-Переводчики **не** могут слать PR в GitHub напрямую — только модератор языка.
+## Роли
 
-## 4. Society: template
+- **Translator** — правки в GL, Review Request
+- **Language Moderator (ru)** — ревью, PR в GitHub
+- **Admin** — настройки репо и GL
 
-В репо есть `en_us_template.json` — автогенерируемый список блоков/предметов Society.  
-При переводе `ru_ru.json` для society переносите ключи из template в основной файл языка (как в [официальном гайде](https://github.com/Chakyl/society-sunlit-valley/blob/master/TRANSLATIONS.md)).
+## Обновление EN после патча модпака
 
-## 5. Роли
+```powershell
+.\scripts\sync-sources.ps1
+git add l10n/source
+git commit -m "chore: sync EN sources from modpack"
+git push
+```
 
-| Роль | Кто |
-|------|-----|
-| Admin | владелец репо |
-| Language Moderator (ru) | ревью + PR в GitHub |
-| Translator | перевод + Review Request |
-
-## 6. Обновление исходников
-
-При выходе новой версии модпака:
-
-1. Обновить `en_us*` и `patchouli_books/*/en_us` в этом репо (PR).
-2. GitLocalize подтянет diff → доработать только изменённые сегменты.
+GitLocalize подтянет изменения; переводите только новые/изменённые сегменты.
