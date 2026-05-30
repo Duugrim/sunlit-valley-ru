@@ -20,8 +20,9 @@ sunlit-valley-ru/
 │   ├── en_us.json
 │   └── ru_ru.json
 ├── mod/
-│   ├── en_us.json
-│   └── ru_ru.json
+│   ├── en_us.json          ← kubejs: тексты UI, описания, жители
+│   ├── en_us_template.json ← автоген: ключи block/item (пустые EN)
+│   └── ru_ru.json          ← оба слоя в одном файле для игры
 ├── skills/
 │   └── en_us.json
 ```
@@ -48,11 +49,36 @@ sunlit-valley-ru/
 
 Язык Minecraft: **Русский**, перезапуск или **F3+T**.
 
+## Template (`en_us_template.json`)
+
+Мод Society генерирует при каждом релизе список ключей **`block.society.*`** и **`item.society.*`** (названия в инвентаре). В template значения пустые — это чеклист для переводчиков.
+
+| Файл | Что переводит | Загружается игрой? |
+|------|----------------|------------------|
+| `mod/en_us.json` | UI, описания, JEI, жители, достижения | да (EN) |
+| `mod/en_us_template.json` | только имена предметов/блоков | **нет** |
+| `mod/ru_ru.json` | **всё вместе** — то, что видит игрок на русском | да (RU) |
+
+**Проверка в игре:** один файл — `minecraft/kubejs/assets/society/lang/ru_ru.json`. Template туда не кладут.
+
+**Workflow после обновления модпака:**
+
+```powershell
+$mc = "<инстанс>\minecraft\kubejs\assets\society\lang"
+Copy-Item "$mc\en_us.json" "mod\en_us.json"
+Copy-Item "$mc\en_us_template.json" "mod\en_us_template.json"
+# новые ключи из template → дописать перевод в mod/ru_ru.json
+Copy-Item "mod\ru_ru.json" "$mc\ru_ru.json"
+```
+
+Образец полного lang-файла в модпаке: `zh_cn.json` (~2000 ключей = en_us + template).
+
 ## Обновить EN из модпака
 
 ```powershell
 $mc = "<инстанс>\minecraft\kubejs\assets"
 Copy-Item "$mc\ftbquestlocalizer\lang\en_us.json" "quests\en_us.json"
 Copy-Item "$mc\society\lang\en_us.json" "mod\en_us.json"
+Copy-Item "$mc\society\lang\en_us_template.json" "mod\en_us_template.json"
 Copy-Item "$mc\society_skills\lang\en_us.json" "skills\en_us.json"
 ```
