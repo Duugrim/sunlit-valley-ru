@@ -39,6 +39,8 @@ sunlit-valley-ru/
 | **File** | `mod/en_us.json` | `mod/%lang%.json` |
 | **File** | `skills/en_us.json` | `skills/%lang%.json` |
 
+`mod/en_us.json` — полный источник для GL: kubejs-тексты **и** названия `block/item` из `en_us_template.json` (английские строки). После обновления модпака: скопировать template, прогнать `_local/build_mod_en_us.py`, доперевести новые ключи в `mod/ru_ru.json`.
+
 ## Установка в модпак
 
 | Файл в репо | Куда в инстансе |
@@ -47,7 +49,10 @@ sunlit-valley-ru/
 | `mod/ru_ru.json` | `minecraft/kubejs/assets/society/lang/ru_ru.json` |
 | `skills/ru_ru.json` | `minecraft/kubejs/assets/society_skills/lang/ru_ru.json` |
 
-Язык Minecraft: **Русский**, перезапуск или **F3+T**.
+Язык Minecraft: **Русский**.
+
+- Скопировали файлы **до запуска** игры — просто зайдите в мир, перезагрузка ресурсов не нужна.
+- Игра **уже была запущена** во время замены — закройте мир и зайдите снова или нажмите **F3+T**.
 
 ## Template (`en_us_template.json`)
 
